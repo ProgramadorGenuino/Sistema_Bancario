@@ -67,6 +67,7 @@ public class Movimentacao implements Cadastro {
      */
     public Movimentacao(Conta conta){
         // TODO: Você precisa implementar este método
+        this.conta = conta;
     }
 
     @Override
