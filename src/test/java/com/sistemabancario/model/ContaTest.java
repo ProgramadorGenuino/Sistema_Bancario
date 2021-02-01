@@ -84,7 +84,7 @@ public class ContaTest {
     }
     
     @Test 
-    void testSaldoTotal(){
+    void testGetSaldoTotal(){
         final double limite = 500.6;
         final double esperado = limite;
         final Conta instance = new Conta();
@@ -149,6 +149,31 @@ public class ContaTest {
         List<Movimentacao> movimentacoes = instance.getMovimentacoes();
         final long obtido = movimentacoes.get(movimentacoes.size() - 1).getId();
         assertEquals(esperado, obtido);
+    }
+    
+    @Test
+    void testAddMovimentacaoTipoC(){
+        final Conta instance = new Conta();
+        final Movimentacao movimentacao = new Movimentacao(instance);
+        movimentacao.setConfirmada(true);
+        movimentacao.setTipo('C');
+        final double esperado = 100.50;
+        movimentacao.setValor(esperado);
+        instance.addMovimentacao(movimentacao);
+        assertEquals(esperado, instance.getSaldoTotal());
+    }
+    
+    @Test
+    void testAddMovimentacaoTipoD(){
+        final Conta instance = new Conta();
+        final Movimentacao movimentacao = new Movimentacao(instance);
+        movimentacao.setConfirmada(true);
+        movimentacao.setTipo('D');
+        final double valor = 100.50;
+        final double esperado = -valor;
+        movimentacao.setValor(valor);
+        instance.addMovimentacao(movimentacao);
+        assertEquals(esperado, instance.getSaldoTotal());
     }
     
     
